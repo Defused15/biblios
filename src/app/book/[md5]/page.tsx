@@ -38,7 +38,7 @@ export default async function BookDetailPage({ params }: Props) {
         className="mb-8 inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
-        Back to search
+        Volver a la búsqueda
       </Link>
 
       <div className="flex flex-col gap-8 sm:flex-row sm:gap-10">
@@ -79,25 +79,25 @@ export default async function BookDetailPage({ params }: Props) {
           <dl className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-3">
             {book.year && (
               <div>
-                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Year</dt>
+                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Año</dt>
                 <dd className="text-zinc-300">{book.year}</dd>
               </div>
             )}
             {book.publisher && (
               <div>
-                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Publisher</dt>
+                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Editorial</dt>
                 <dd className="text-zinc-300 truncate">{book.publisher}</dd>
               </div>
             )}
             {book.language && (
               <div>
-                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Language</dt>
+                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Idioma</dt>
                 <dd className="text-zinc-300 capitalize">{book.language}</dd>
               </div>
             )}
             {book.pages && (
               <div>
-                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Pages</dt>
+                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Páginas</dt>
                 <dd className="text-zinc-300">{book.pages}</dd>
               </div>
             )}
@@ -109,7 +109,7 @@ export default async function BookDetailPage({ params }: Props) {
             )}
             {book.sizeBytes && (
               <div>
-                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Size</dt>
+                <dt className="text-[11px] uppercase tracking-wider text-zinc-600">Tamaño</dt>
                 <dd className="text-zinc-300">{(book.sizeBytes / (1024 * 1024)).toFixed(1)} MB</dd>
               </div>
             )}
@@ -143,7 +143,7 @@ export default async function BookDetailPage({ params }: Props) {
       {/* Synopsis */}
       {book.synopsis && (
         <div className="mt-10 border-t border-zinc-800 pt-8">
-          <h2 className="mb-3 font-serif text-xl font-semibold text-zinc-200">About this book</h2>
+          <h2 className="mb-3 font-serif text-xl font-semibold text-zinc-200">Sobre este libro</h2>
           <p className="leading-relaxed text-zinc-400">{book.synopsis}</p>
         </div>
       )}

@@ -16,16 +16,16 @@ interface SearchBarProps {
 }
 
 const LANGUAGES = [
-  { value: '', label: 'Any language' },
-  { value: 'en', label: 'English' },
-  { value: 'es', label: 'Spanish' },
-  { value: 'fr', label: 'French' },
-  { value: 'de', label: 'German' },
-  { value: 'pt', label: 'Portuguese' },
+  { value: '', label: 'Cualquier idioma' },
+  { value: 'en', label: 'Inglés' },
+  { value: 'es', label: 'Español' },
+  { value: 'fr', label: 'Francés' },
+  { value: 'de', label: 'Alemán' },
+  { value: 'pt', label: 'Portugués' },
 ]
 
 const FORMATS = [
-  { value: '', label: 'Any format' },
+  { value: '', label: 'Cualquier formato' },
   { value: 'epub', label: 'EPUB' },
   { value: 'pdf', label: 'PDF' },
   { value: 'mobi', label: 'MOBI' },
@@ -59,7 +59,7 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search by title, author, or ISBN…"
+            placeholder="Busca por título, autor o ISBN…"
             disabled={loading}
             className="pl-10 pr-4 h-12 bg-zinc-900 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-amber-500/50 focus-visible:border-amber-500/50 text-base disabled:opacity-50"
           />
@@ -80,7 +80,7 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
         <button
           type="button"
           onClick={() => setFiltersOpen((o) => !o)}
-          aria-label="Toggle filters"
+          aria-label="Mostrar filtros"
           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-md border transition-colors ${
             filtersOpen || lang || ext
               ? 'border-amber-500/60 bg-amber-500/10 text-amber-400'
@@ -95,7 +95,7 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
         <div className="mt-2 flex gap-3 rounded-md border border-zinc-800 bg-zinc-900/80 px-4 py-3">
           <div className="flex flex-col gap-1 flex-1">
             <label className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-              Language
+              Idioma
             </label>
             <select
               value={lang}
@@ -112,7 +112,7 @@ export function SearchBar({ onSearch, loading = false }: SearchBarProps) {
 
           <div className="flex flex-col gap-1 flex-1">
             <label className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
-              Format
+              Formato
             </label>
             <select
               value={ext}

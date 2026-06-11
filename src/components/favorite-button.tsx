@@ -26,7 +26,7 @@ export function FavoriteButton({ md5, book }: FavoriteButtonProps) {
   return (
     <button
       onClick={handleClick}
-      aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={favorited ? 'Quitar de favoritos' : 'Agregar a favoritos'}
       className="group flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-zinc-800"
     >
       <Heart

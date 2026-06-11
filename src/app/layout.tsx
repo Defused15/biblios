@@ -22,8 +22,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Biblios — Find & Download Books',
-  description: 'Search millions of books and download them instantly.',
+  title: 'Biblios — Encuentra y descarga libros',
+  description: 'Busca millones de libros y descárgalos al instante.',
 }
 
 export default function RootLayout({

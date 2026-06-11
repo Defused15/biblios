@@ -13,12 +13,12 @@ interface HistoryEntry {
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime()
   const mins = Math.floor(diff / 60000)
-  if (mins < 1) return 'just now'
-  if (mins < 60) return `${mins}m ago`
+  if (mins < 1) return 'ahora mismo'
+  if (mins < 60) return `hace ${mins}m`
   const hrs = Math.floor(mins / 60)
-  if (hrs < 24) return `${hrs}h ago`
+  if (hrs < 24) return `hace ${hrs}h`
   const days = Math.floor(hrs / 24)
-  return `${days}d ago`
+  return `hace ${days}d`
 }
 
 export default function HistoryPage() {
@@ -45,12 +45,12 @@ export default function HistoryPage() {
         className="mb-8 inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
-        Back to search
+        Volver a la búsqueda
       </Link>
 
       <div className="mb-8 flex items-center gap-3">
         <Clock className="h-6 w-6 text-zinc-400" />
-        <h1 className="font-serif text-2xl font-semibold text-zinc-100">Search History</h1>
+        <h1 className="font-serif text-2xl font-semibold text-zinc-100">Historial de búsquedas</h1>
       </div>
 
       {loading && (
@@ -64,13 +64,13 @@ export default function HistoryPage() {
       {!loading && history.length === 0 && (
         <div className="py-20 text-center">
           <Clock className="mx-auto mb-4 h-12 w-12 text-zinc-800" />
-          <p className="font-serif text-xl text-zinc-500">No search history yet.</p>
-          <p className="mt-2 text-sm text-zinc-600">Your searches will appear here.</p>
+          <p className="font-serif text-xl text-zinc-500">Sin historial todavía.</p>
+          <p className="mt-2 text-sm text-zinc-600">Tus búsquedas aparecerán aquí.</p>
           <Link
             href="/"
             className="mt-6 inline-flex items-center gap-2 rounded-md bg-amber-500 px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-amber-400 transition-colors"
           >
-            Start searching
+            Empezar a buscar
           </Link>
         </div>
       )}

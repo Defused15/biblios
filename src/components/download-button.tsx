@@ -40,7 +40,7 @@ export function DownloadButton({ md5, ext, filename }: DownloadButtonProps) {
           setState('idle')
           return
         }
-        throw new Error(data.error ?? 'Unknown error')
+        throw new Error(data.error ?? 'Error desconocido')
       }
 
       const blob = await res.blob()
@@ -55,7 +55,7 @@ export function DownloadButton({ md5, ext, filename }: DownloadButtonProps) {
       setState('done')
       setTimeout(() => setState('idle'), 3000)
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Download failed')
+      setErrorMsg(err instanceof Error ? err.message : 'Error al descargar')
       setState('error')
     }
   }
@@ -68,10 +68,10 @@ export function DownloadButton({ md5, ext, filename }: DownloadButtonProps) {
   }
 
   const labels = {
-    idle: 'Download',
-    loading: 'Loading…',
-    done: 'Done',
-    error: 'Retry',
+    idle: 'Descargar',
+    loading: 'Cargando…',
+    done: 'Listo',
+    error: 'Reintentar',
   }
 
   const variants: Record<DownloadState, string> = {

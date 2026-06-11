@@ -27,7 +27,7 @@ export function Navbar() {
             className="relative flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
           >
             <Heart className="h-4 w-4" />
-            <span className="hidden sm:inline">Favorites</span>
+            <span className="hidden sm:inline">Favoritos</span>
             {count > 0 && (
               <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-amber-500 px-1 text-[10px] font-bold text-zinc-950">
                 {count > 99 ? '99+' : count}
@@ -40,7 +40,7 @@ export function Navbar() {
             className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
           >
             <Clock className="h-4 w-4" />
-            <span className="hidden sm:inline">History</span>
+            <span className="hidden sm:inline">Historial</span>
           </Link>
         </nav>
       </div>

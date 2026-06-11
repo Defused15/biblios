@@ -31,13 +31,13 @@ export default function HomePage() {
       const res = await fetch(`/api/search?${params}`)
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
-        throw new Error(data.error ?? `Error ${res.status}`)
+        throw new Error(data.error ?? `Error de búsqueda ${res.status}`)
       }
       const data = await res.json()
       setResults(data.results ?? [])
       setSource(data.source ?? null)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Search failed')
+      setError(err instanceof Error ? err.message : 'Error al buscar')
       setResults([])
     } finally {
       setLoading(false)
@@ -49,12 +49,12 @@ export default function HomePage() {
       {/* Hero */}
       <div className="mb-12 text-center">
         <h1 className="font-serif text-5xl font-semibold tracking-tight text-zinc-100 sm:text-6xl">
-          Find any book.
+          Encuentra cualquier libro.
           <br />
-          <span className="text-amber-400">Download it free.</span>
+          <span className="text-amber-400">Descárgalo gratis.</span>
         </h1>
         <p className="mt-4 text-base text-zinc-500">
-          Millions of titles across every format — EPUB, PDF, MOBI, and more.
+          Millones de títulos en todos los formatos — EPUB, PDF, MOBI y más.
         </p>
       </div>
 
@@ -78,8 +78,8 @@ export default function HomePage() {
 
         {!loading && searched && !error && results.length === 0 && (
           <div className="py-16 text-center">
-            <p className="font-serif text-xl text-zinc-500">No results found.</p>
-            <p className="mt-2 text-sm text-zinc-600">Try a different title, author, or ISBN.</p>
+            <p className="font-serif text-xl text-zinc-500">Sin resultados.</p>
+            <p className="mt-2 text-sm text-zinc-600">Intenta con otro título, autor o ISBN.</p>
           </div>
         )}
 
@@ -87,7 +87,7 @@ export default function HomePage() {
           <>
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm text-zinc-500">
-                {results.length} result{results.length !== 1 ? 's' : ''}
+                {results.length} resultado{results.length !== 1 ? 's' : ''}
                 {source === 'annas-archive' && (
                   <span className="ml-2 rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-500">
                     via Anna's Archive
@@ -109,7 +109,7 @@ export default function HomePage() {
               <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={0.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
-              <p className="font-serif text-lg">Start searching to find books</p>
+              <p className="font-serif text-lg">Busca un libro para comenzar</p>
             </div>
           </div>
         )}
