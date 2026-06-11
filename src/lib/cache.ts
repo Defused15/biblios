@@ -20,7 +20,7 @@ export async function getCachedSearch(
   if (JSON.stringify(entry.filters) !== JSON.stringify(filters)) {
     return null
   }
-  return entry.results as BookResult[]
+  return entry.results as unknown as BookResult[]
 }
 
 export async function setCachedSearch(
@@ -30,6 +30,6 @@ export async function setCachedSearch(
 ): Promise<void> {
   const expiresAt = new Date(Date.now() + 6 * 60 * 60 * 1000)
   await prisma.searchCache.create({
-    data: { query, filters, results, expiresAt },
+    data: { query, filters: filters as object, results: results as unknown as object[], expiresAt },
   })
 }

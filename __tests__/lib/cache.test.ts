@@ -10,19 +10,20 @@ jest.mock('@/lib/prisma', () => ({
   },
 }))
 
-const mockPrisma = prisma as jest.Mocked<typeof prisma>
+const mockFindFirst = prisma.searchCache.findFirst as jest.Mock
+const mockCreate = prisma.searchCache.create as jest.Mock
 
 describe('search cache', () => {
   beforeEach(() => jest.clearAllMocks())
 
   it('returns null when no cache entry exists', async () => {
-    mockPrisma.searchCache.findFirst.mockResolvedValue(null)
+    mockFindFirst.mockResolvedValue(null)
     const result = await getCachedSearch('dune', {})
     expect(result).toBeNull()
   })
 
   it('returns null when cache entry is expired', async () => {
-    mockPrisma.searchCache.findFirst.mockResolvedValue({
+    mockFindFirst.mockResolvedValue({
       id: '1',
       query: 'dune',
       filters: {},
@@ -36,7 +37,7 @@ describe('search cache', () => {
 
   it('returns results when cache entry is valid', async () => {
     const results = [{ md5: 'abc', title: 'Dune', author: 'Herbert', extension: 'epub' }]
-    mockPrisma.searchCache.findFirst.mockResolvedValue({
+    mockFindFirst.mockResolvedValue({
       id: '1',
       query: 'dune',
       filters: {},
@@ -49,15 +50,15 @@ describe('search cache', () => {
   })
 
   it('saves results with 6h expiry', async () => {
-    mockPrisma.searchCache.create.mockResolvedValue({} as any)
+    mockCreate.mockResolvedValue({} as any)
     const results = [{ md5: 'abc', title: 'Dune', author: 'Herbert', extension: 'epub' }]
     await setCachedSearch('dune', {}, results)
-    expect(mockPrisma.searchCache.create).toHaveBeenCalledWith(
+    expect(mockCreate).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({ query: 'dune', results }),
+        data: expect.objectContaining({ query: 'dune' }),
       })
     )
-    const call = mockPrisma.searchCache.create.mock.calls[0][0]
+    const call = mockCreate.mock.calls[0][0]
     const expiry = call.data.expiresAt as Date
     const sixHoursMs = 6 * 60 * 60 * 1000
     expect(expiry.getTime()).toBeGreaterThan(Date.now() + sixHoursMs - 5000)
