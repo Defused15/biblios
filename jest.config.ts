@@ -20,6 +20,9 @@ const config: Config = {
       testMatch: ['**/__tests__/components/**/*.test.tsx'],
       setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
       transform: { '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react-jsx' } }] },
+      moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1',
+      },
     },
   ],
 }
