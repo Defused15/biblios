@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model SearchCache {
+  id        String   @id @default(cuid())
+  query     String
+  filters   Json
+  results   Json
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([query])
+  @@index([expiresAt])
+}
+
+model UserFavorite {
+  id        String   @id @default(cuid())
+  sessionId String
+  md5       String
+  metadata  Json
+  createdAt DateTime @default(now())
+
+  @@unique([sessionId, md5])
+  @@index([sessionId])
+}
+
+model SearchHistory {
+  id        String   @id @default(cuid())
+  sessionId String
+  query     String
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+model RateLimit {
+  ip        String   @id
+  count     Int      @default(0)
+  windowEnd DateTime
+}
