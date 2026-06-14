@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const q = searchParams.get('q')?.trim()
   const lang = searchParams.get('lang') ?? undefined
-  const ext = searchParams.get('ext') ?? undefined
+  const ext = searchParams.get('ext') ?? 'epub'
   const page = parseInt(searchParams.get('page') ?? '1')
 
   if (!q) return NextResponse.json({ error: 'Missing query' }, { status: 400 })

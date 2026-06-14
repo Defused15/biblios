@@ -18,9 +18,14 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<Map<string, BookResult>>(new Map())
 
   const refresh = useCallback(async () => {
-    const res = await fetch('/api/favorites')
-    const data = await res.json() as BookResult[]
-    setFavorites(new Map(data.map((f) => [f.md5, f])))
+    try {
+      const res = await fetch('/api/favorites')
+      if (!res.ok) throw new Error('Failed to fetch')
+      const data = await res.json() as BookResult[]
+      setFavorites(new Map(data.map((f) => [f.md5, f])))
+    } catch (e) {
+      console.error('Error fetching favorites:', e)
+    }
   }, [])
 
   useEffect(() => { refresh() }, [refresh])
